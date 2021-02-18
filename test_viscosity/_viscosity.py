@@ -5,8 +5,8 @@ def viscosity(state_parameters):
     """compute the viscosity of dense plasma
     Input:
       - state_parameters -- array of model parameters: material temperature and density
-          --density is normalized with: 1e22 1/cm^3
-          --temperature is normalized with:  300 eV
+          --density is normalized to 1e22 1/cm^3
+          --temperature is normalized to  300 eV
       
     Output:
       - reduced viscosity -- viscosity in units of rho wp^2a^2
