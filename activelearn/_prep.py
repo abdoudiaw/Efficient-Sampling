@@ -74,6 +74,3 @@ def search(axis, **kwds): #FIXME: axis=None, samplers=None
     _map = kwds.get('map', map)
     fs = (sample, isample) #FIXME: accept list of samplers (don't hardwire)
     return list(_map(_apply, fs, [axis]*len(fs)))
-
-# def axify(i):
-#     return abs(i+1) if i < 0 else i
