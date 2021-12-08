@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Efficient learning 
 The repository shows an Efficient learning method based on finding critical points on a response surface using an optimizer.
 
@@ -27,13 +26,15 @@ Relevant information is printed to stdout, and also dumped into several files:
 - eval: a database of evaluations of the objective
 
 Any of the "pkl" files can be read like this:
-  >>> import dill; cost = dill.load(open('cost.pkl', 'rb'))
+```ruby import dill
+  cost = dill.load(open('cost.pkl', 'rb'))
+  ```
 while relevant results from the databases are plotted with:
-  $ python plot_func.py
+```ruby python plot_func.py
+```
 and test score convergence is plotted with:
-  $ python plot_*_converge.py    (* = loose, tight)
+```ruby python plot_*_converge.py    (* = loose, tight)
+  ```
 with "loose" corresponding to loose tolerance, and tight to strict tolerance.
 =======
-# Active-Sampling
-Efficient Learning of Accurate Surrogates for Simulations of Complex Systems.
->>>>>>> eb939b305553d26db32fb08e9a882913460082b1
+
