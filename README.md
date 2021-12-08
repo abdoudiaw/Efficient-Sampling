@@ -1,7 +1,7 @@
 # Efficient learning 
 The repository shows an Efficient learning method using critical points of a response surface.
 
-To run the script in TableI and TableII you need to install mystic and its requirements:  https://github.com/uqfoundation/mystic
+To run the scripts in TableI and TableII.  First you need to install mystic and its requirements:  https://github.com/uqfoundation/mystic
 
 # mystic
 highly-constrained non-convex optimization and uncertainty quantification
