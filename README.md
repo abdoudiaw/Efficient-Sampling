@@ -38,6 +38,7 @@ and test score convergence is plotted with:
 ```ruby 
 python plot_*_converge.py    (* = loose, tight)
   ```
-with "loose" corresponding to loose tolerance, and tight to strict tolerance.
+with "loose" corresponding to loose tolerance, and tight to strict tolerance.  
+
 =======
 
