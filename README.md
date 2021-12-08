@@ -13,7 +13,10 @@ Adjustable settings are in _model.py, but are set at values used in manuscript.
 Results may be slightly different due to randomness from sampler and optimizer.
 
 Executes with:
+```ruby 
   $ python main_workflow.py
+ ```
+    
 and may take anywhere from a few minutes to a few days, depending on the model
 and tolerance used, and randomness.
 Relevant information is printed to stdout, and also dumped into several files:
@@ -27,10 +30,12 @@ Relevant information is printed to stdout, and also dumped into several files:
 
 Any of the "pkl" files can be read like this:
 ```ruby 
-  import dill
-  cost = dill.load(open('cost.pkl', 'rb'))
+ >>> import dill
+ >>> cost = dill.load(open('cost.pkl', 'rb'))
   ```
+  
 while relevant results from the databases are plotted with:
+
 ```ruby 
 python plot_func.py
 ```
