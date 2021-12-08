@@ -26,14 +26,17 @@ Relevant information is printed to stdout, and also dumped into several files:
 - eval: a database of evaluations of the objective
 
 Any of the "pkl" files can be read like this:
-```ruby import dill
+```ruby 
+  import dill
   cost = dill.load(open('cost.pkl', 'rb'))
   ```
 while relevant results from the databases are plotted with:
-```ruby python plot_func.py
+```ruby 
+python plot_func.py
 ```
 and test score convergence is plotted with:
-```ruby python plot_*_converge.py    (* = loose, tight)
+```ruby 
+python plot_*_converge.py    (* = loose, tight)
   ```
 with "loose" corresponding to loose tolerance, and tight to strict tolerance.
 =======
