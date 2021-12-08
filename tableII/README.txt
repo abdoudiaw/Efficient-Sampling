@@ -1,20 +1,10 @@
-# Efficient learning 
-The repository shows an Efficient learning method based on finding critical points on a response surface using an optimizer.
-
-To run the script in TableI and TableII you need to install mystic and its requirements:  https://github.com/uqfoundation/mystic
-
-# mystic
-highly-constrained non-convex optimization and uncertainty quantificatin
-
-#
-
-
 Adjustable settings are in _model.py, but are set at values used in manuscript.
-Results may be slightly different due to randomness from sampler and optimizer.
+Results may be slightly different due to randomness from sampler and optimizer,
+and the code has been slightly refactored over time.
 
 Executes with:
   $ python main_workflow.py
-and may take anywhere from a few minutes to a few days, depending on the model
+and may take anywhere from a few minutes to a few hours, depending on the model
 and tolerance used, and randomness.
 Relevant information is printed to stdout, and also dumped into several files:
 - cost.pkl: the objective function
@@ -29,6 +19,4 @@ Any of the "pkl" files can be read like this:
   >>> import dill; cost = dill.load(open('cost.pkl', 'rb'))
 while relevant results from the databases are plotted with:
   $ python plot_func.py
-and test score convergence is plotted with:
-  $ python plot_*_converge.py    (* = loose, tight)
-with "loose" corresponding to loose tolerance, and tight to strict tolerance.
+The total number of function evaluations are printed to stdout.

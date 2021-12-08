@@ -1,14 +1,3 @@
-# Efficient learning 
-The repository shows an Efficient learning method based on finding critical points on a response surface using an optimizer.
-
-To run the script in TableI and TableII you need to install mystic and its requirements:  https://github.com/uqfoundation/mystic
-
-# mystic
-highly-constrained non-convex optimization and uncertainty quantificatin
-
-#
-
-
 Adjustable settings are in _model.py, but are set at values used in manuscript.
 Results may be slightly different due to randomness from sampler and optimizer.
 
