@@ -6,8 +6,8 @@ export Sampler_DIR='fmin'          # options: fmin, powell
 #
 #
 ##### DO NOT MODIFY THESE LINES #####
-export Table_DIR=/Users/diaw/Efficient-Sampling/tableII
-export Results_DIR=/Users/diaw/Efficient-Sampling/results/tableII
+export Table_DIR=${Efficient-Sampling/tableII}
+export Results_DIR=${Efficient-Sampling/results/tableII}
 #
 cd ${Results_DIR}
 mkdir "${Function}"

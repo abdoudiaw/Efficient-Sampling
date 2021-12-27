@@ -6,8 +6,8 @@ export Sampler_DIR='looseopt'          # options: looseopt, loosernd, tightopt,t
 #
 #
 ##### DO NOT MODIFY THESE LINES #####
-export Table_DIR=/Users/diaw/Efficient-Sampling/tableI
-export Results_DIR=/Users/diaw/Efficient-Sampling/results/tableI
+export Table_DIR=${Efficient-Sampling/tableI}
+export Results_DIR=${Efficient-Sampling/results/tableI}
 #
 cd ${Results_DIR}
 mkdir "${Function}"
