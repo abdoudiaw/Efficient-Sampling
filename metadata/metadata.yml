@@ -1,0 +1,11 @@
+metadata_version: 1
+name: Efficient Learning of Accurate Surrogates for Simulations of Complex Systems
+description: Efficient Learning of Accurate Surrogates for Simulations of Complex
+  Systems
+authors:
+- name: Abdourahmane Diaw
+  affiliations:
+  - name: Los Alamos National Lab
+corresponding_contributor:
+  name: Abdourahmane Diaw
+  email: diaw@lanl.gov

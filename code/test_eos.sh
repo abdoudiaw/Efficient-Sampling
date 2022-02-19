@@ -1,25 +1,22 @@
 #!/bin/bash
 #
-export testcase='eos'
-export Sampler_DIR='powell'          # options: fmin, powell
-#
+# Specify the eos model
+export EosModel='Skyrme'           # options: Skyrme
 #
 ##### DO NOT MODIFY THESE LINES #####
-export Results_DIR=../results #/tableII
+export EOS_DIR='eos'
+export Results_DIR=../results #
 
 cd ${Results_DIR}
-mkdir "${testcase}"
-cd    ${testcase}
-mkdir "${Sampler_DIR}"
-cd    "${Sampler_DIR}"
-# #
-#cp ../../../code/${Table_DIR}/${testcase}/${Sampler_DIR}/* .
-cp /Users/diaw/Efficient-Sampling/code/${testcase}/${Sampler_DIR}/* .
+mkdir "${EosModel}"
+cd    ${EosModel}
 
+# #
+cp -r ../../../code/${EOS_DIR}/${EosModel}/* .
 # run test
-echo  "Running ${testcase} with sampler ${Sampler_DIR}"
+echo  "Running ${EosModel}"
 python main_workflow.py
 #
-echo "Finished running!"
+echo "Finished learning eos. Cleaning up"
 
 
