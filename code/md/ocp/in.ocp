@@ -1,0 +1,94 @@
+
+# LAMMPS input script for radial distribution function of a one-component plasma (OCP).
+# RDF compute via fix ave/time.
+# Forces are estimated with a pure Coulomb potential.
+# Ewald summation is used for the long-range calculations.
+
+
+# The coupling parameter Gamma
+variable Gamma file Gamma.csv
+
+# settings: equilibration and production run time
+variable      simtime    equal   2000 #200000
+variable      tequil     equal   floor(1000)
+variable      freq       equal   ${simtime}/10
+
+# settings: simulation domain
+variable       xlen      equal   4.6784288e-05
+variable       ylen      equal   4.6784288e-05
+variable       zlen      equal   4.6784288e-05
+
+# settings: electron parameters
+variable       prcoeff   equal   2.306881e-19
+variable       mass_p    equal   1.660000e-24
+variable       Npar      equal  1024
+variable       q         equal  4.803000e-10
+variable       Imas      equal  1.660000e-24
+
+# setup problem
+units			cgs
+atom_style		charge
+newton          on
+dimension		3
+boundary		p p p
+
+#  Simulation domain and particles
+region	        simBox block 0 ${xlen} 0 ${ylen} 0 ${zlen}  units box
+create_box	    2 simBox
+create_atoms	1 random ${Npar}  257349 simBox
+
+set    type 1 charge  ${q}
+mass         * ${Imas}
+
+# From the density of the system, we set the cut-off of the force
+# Estimate the timestep from the inverse plasma frequency and  neighbor list parameters.
+# Also, plasma temperature is set from the values of Gamma and density
+
+variable        dens    equal    count(all)/vol
+variable        aws     equal    (3./(4*PI*${dens}))^(1./3.)   #Wigner-Seitz radius
+variable        rc      equal    5*${aws}
+variable        dbin    equal    0.1*${rc}
+variable        Temp    equal    ${prcoeff}/(1.3808E-16*${aws}*${Gamma})
+variable        wp      equal    1.32e3*sqrt(${dens})
+variable        dt      equal    1.0/(300.*${wp})
+variable        Tdamp   equal    100.*${dt}
+
+# Forces and Neighbor list
+pair_style 	 coul/long 	${rc}
+pair_coeff	 * *   
+
+neighbor	 ${dbin}   	bin
+neigh_modify    delay   0 every  1
+
+# Ewald
+pair_modify      table       0
+kspace_style 	 ewald 		1.0e-04
+
+# Particles velocity from a Maxwellian distribution
+velocity 		all create ${Temp} 102486 dist gaussian units box
+# NVT: Nosé–Hoover thermostat
+fix		 	nvtid all nvt temp ${Temp} ${Temp} ${Tdamp}
+
+thermo		 	1000
+thermo_style		custom step pe ke etotal temp  
+thermo_modify 		flush yes
+timestep		${dt}
+run			${tequil}
+
+print "Equilibration succesfully done!"
+print "Start production run for RDF!"
+
+# NVT: remove Nosé–Hoover thermostat
+unfix                   nvtid
+
+# NVE
+fix 		nveid 		all 	nve
+
+# compute RDF
+compute 	myRDF all rdf 50
+fix         rdfid all ave/time 1 ${freq} ${simtime}  c_myRDF[1] c_myRDF[2] file rdf.csv mode vector
+
+run		${simtime}
+
+print "Simulation succesfully done!"
+clear
