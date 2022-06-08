@@ -1,5 +1,6 @@
 # Efficient learning 
-The repository shows an Efficient learning method using critical points of a response surface.
+The repository has codes of our online learning method based on optimizer-driven sampling.
+
 
 To run the scripts in TableI and TableII.  First you need to install mystic and its requirements:  https://github.com/uqfoundation/mystic
 
