@@ -41,10 +41,3 @@ with "loose" corresponding to loose tolerance, and tight to strict tolerance.
 
 =======
 
-Each of the different examples (e.g., benchmark functions or the eos models) can be easily run by sourcing the test* file.
-```ruby 
-  source test_eos.sh
-  ```
-  Results will be stored in results/model.
-
-

@@ -24,7 +24,7 @@ hcube += ''
 scale = None #1 # plot depth scaling
 
 # controls
-warms = 1000 # this is size of 'warm'
+warms = 100 # this is size of 'warm'
 fails = 10 # this is number of refit tries before 'fail' to sampling
 maxtol = 1e-4 #1e-6 max tol for valid
 avetol = 1e-5 #1e-7 # ave tol for valid

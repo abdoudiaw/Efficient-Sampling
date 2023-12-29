@@ -24,7 +24,7 @@ def OCP(x):
     # Load MD script here
     lammps_script = open('in.ocp')
     #  Run the MD
-    args=['mpirun','-np', '4','/Users/diaw/lammps/src/lmp_mpi']
+    args=['mpirun','-np', '4','lmp_mpi']
     sp.Popen(args, stdin=lammps_script).wait()
     
    # Load the MD results, interpolate and return result for a given r
