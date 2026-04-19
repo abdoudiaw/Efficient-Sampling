@@ -1,0 +1,15 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+*.pyo
+*.swp
+*.orig
+.coverage
+.pytest_cache/
+.local/
+.venv-smoke/
+build/
+dist/
+external/
+*.egg-info/
+results/

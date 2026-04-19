@@ -17,5 +17,5 @@ def presssure(x):
     """
     YP, NB = x
     Inputs = collections.namedtuple('Inputs', 'YP NB')
-    model = torch.load("./skyrme_model/skyrme_bag_hybrid.pt")
+    model = torch.load("./skyrme_model/skyrme_bag_hybrid.pt", weights_only=False)
     return model(Inputs(YP, NB))[0][0]

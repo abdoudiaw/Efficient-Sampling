@@ -1,11 +1,15 @@
 metadata_version: 1
 name: Efficient Learning of Accurate Surrogates for Simulations of Complex Systems
-description: Efficient Learning of Accurate Surrogates for Simulations of Complex
-  Systems
+description: Research code accompanying the Nature Machine Intelligence paper on
+  optimizer-driven online learning of accurate surrogates for complex simulations.
 authors:
 - name: Abdourahmane Diaw
   affiliations:
   - name: Los Alamos National Lab
+- name: Michael McKerns
+- name: Ingo Sagert
+- name: Liam G. Stanton
+- name: Michael S. Murillo
 corresponding_contributor:
   name: Abdourahmane Diaw
   email: diaw@lanl.gov

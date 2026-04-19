@@ -2,6 +2,7 @@ import numpy as np
 import subprocess as sp
 import csv
 import os
+import shlex
 from scipy import interpolate
 import mystic.cache as mc
 from _model import *
@@ -24,8 +25,25 @@ def OCP(x):
     # Load MD script here
     lammps_script = open('in.ocp')
     #  Run the MD
-    args=['mpirun','-np', '4','lmp_mpi']
-    sp.Popen(args, stdin=lammps_script).wait()
+    command = os.environ.get('LAMMPS_COMMAND')
+    if command:
+        args = shlex.split(command)
+    else:
+        mpiexec = os.environ.get('LAMMPS_MPIEXEC', 'mpirun')
+        nprocs = os.environ.get('LAMMPS_NP', '4')
+        executable = os.environ.get('LAMMPS_EXECUTABLE', 'lmp_mpi')
+        args = [mpiexec, '-np', nprocs, executable]
+
+    try:
+        result = sp.run(args, stdin=lammps_script, check=False)
+    except FileNotFoundError as exc:
+        raise RuntimeError(
+            "LAMMPS executable not found. Set LAMMPS_COMMAND for a full launch command "
+            "or set LAMMPS_MPIEXEC/LAMMPS_NP/LAMMPS_EXECUTABLE."
+        ) from exc
+
+    if result.returncode != 0:
+        raise RuntimeError(f"LAMMPS command failed with exit code {result.returncode}: {' '.join(args)}")
     
    # Load the MD results, interpolate and return result for a given r
     data=np.loadtxt('rdf.csv', skiprows=4, unpack=True)
@@ -40,5 +58,3 @@ def OCP(x):
     mc.archive.write(db, z)
     
     return f(r_)
-
-

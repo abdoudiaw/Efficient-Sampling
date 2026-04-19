@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-set -ex
+set -euo pipefail
 
-# This is the master script for the capsule. When you click "Reproducible Run", the code in this file will execute.
-bash test_tableII.sh "$@"
+# Default entrypoint from the archived Code Ocean capsule.
+PYTHONPATH=../src python3 -m efficient_sampling.cli run benchmark tableII ackley fmin "$@"
 
-###### Uncomment to run test for table I
+###### Uncomment to run the Table I benchmark workflow.
 # bash test_tableI.sh "$@"

@@ -1,23 +1,7 @@
-#!/bin/bash
-#
-# Specify the eos model
-export PlasmaModel='ocp'           # options: Skyrme
-#
-##### DO NOT MODIFY THESE LINES #####
-export MD_DIR='md'
-export Results_DIR=../results #
+#!/usr/bin/env bash
+set -euo pipefail
 
-cd ${Results_DIR}
-mkdir "${PlasmaModel}"
-cd    ${PlasmaModel}
+# Select the molecular dynamics example.
+export PlasmaModel='ocp'   # options: ocp
 
-# #
-#cp -r /Users/diaw/Efficient-Sampling/code/${MD_DIR}/${PlasmaModel}/* .
-cp -r ../../../code/${MD_DIR}/${PlasmaModel}/* .
-# run test
-echo  "Running ${PlasmaModel}"
-python main_workflow.py
-#
-echo "Finished learning eos. Cleaning up"
-
-
+PYTHONPATH=src python3 -m efficient_sampling.cli run md "${PlasmaModel}" "$@"

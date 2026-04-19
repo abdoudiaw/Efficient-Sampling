@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+title: Efficient Learning of Accurate Surrogates for Simulations of Complex Systems
+message: If you use this repository, please cite the paper below.
+type: software
+authors:
+  - family-names: Diaw
+    given-names: Abdourahmane
+  - family-names: McKerns
+    given-names: Michael
+  - family-names: Sagert
+    given-names: Ingo
+  - family-names: Stanton
+    given-names: Liam G.
+  - family-names: Murillo
+    given-names: Michael S.
+doi: 10.1038/s42256-024-00839-1
+url: https://www.nature.com/articles/s42256-024-00839-1
+repository-code: https://github.com/abdoudiaw/Efficient-Sampling
+license: BSD-3-Clause
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Diaw
+      given-names: A.
+    - family-names: McKerns
+      given-names: M.
+    - family-names: Sagert
+      given-names: I.
+    - family-names: Stanton
+      given-names: L. G.
+    - family-names: Murillo
+      given-names: M. S.
+  title: Efficient learning of accurate surrogates for simulations of complex systems
+  journal: Nature Machine Intelligence
+  year: 2024
+  volume: 6
+  start: 568
+  end: 577
+  doi: 10.1038/s42256-024-00839-1

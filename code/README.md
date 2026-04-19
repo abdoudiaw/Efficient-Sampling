@@ -1,43 +1,54 @@
-# Efficient learning 
-The repository shows an Efficient learning method using critical points of a response surface.
+# Code Overview
 
-We provide scripts to run test cases in TableI and TableII.
+This directory contains the research workflows used in the paper.
 
-Source the bash script to run a test.
+## Structure
 
-#
+- `common/benchmark/`: shared benchmark runtime modules
+- `tableI/` and `tableII/`: case-specific benchmark configurations and convergence plots
+- `eos/`: dense nuclear matter equation-of-state workflow
+- `md/`: molecular dynamics workflow
+- `run`: default archived capsule entrypoint
 
+The benchmark case directories now keep only the files that are actually case-specific, primarily `_model.py` and small helper modules such as `hartmann.py`.
 
-Adjustable settings are in _model.py, but are set at values used in manuscript.
-Results may be slightly different due to randomness from sampler and optimizer.
+## Running workflows
 
-Executes with:
-  $ python main_workflow.py
-and may take anywhere from a few minutes to a few days, depending on the model
-and tolerance used, and randomness.
-Relevant information is printed to stdout, and also dumped into several files:
-- cost.pkl: the objective function
-- hist.pkl: historical testing misfit
-- size.pkl: historical endpoint cache size
-- score.txt: convergence of the test score versus model evaluations
-- stop: a database of the endpoints of the optimizers
-- func.db: a database of the learned surrogates
-- eval: a database of evaluations of the objective
+From the repository root:
 
-Any of the "pkl" files can be read like this:
-```ruby 
-  import dill
-  cost = dill.load(open('cost.pkl', 'rb'))
-  ```
-while relevant results from the databases are plotted with:
-```ruby 
-python plot_func.py
+```bash
+efficient-sampling run benchmark tableII ackley fmin
+efficient-sampling run eos Skyrme
 ```
-and test score convergence is plotted with:
-```ruby 
-python plot_*_converge.py    (* = loose, tight)
-  ```
-with "loose" corresponding to loose tolerance, and tight to strict tolerance.  
 
-=======
+The shell launchers in this directory call the same CLI and are kept for backward compatibility with the original repo layout.
 
+## Common outputs
+
+Generated outputs usually include:
+
+- `cost.pkl`: serialized objective function
+- `hist.pkl`: test-misfit history
+- `size.pkl`: endpoint-cache history
+- `score.txt`: score versus model-evaluation history
+- `stop`: optimizer endpoint database
+- `func.db`: learned surrogate database
+- `eval`: objective-evaluation database
+
+Pickle artifacts can be inspected with `dill`, for example:
+
+```python
+import dill
+
+with open("cost.pkl", "rb") as fh:
+    cost = dill.load(fh)
+```
+
+## MD note
+
+The MD workflow shells out to an external LAMMPS executable. It needs a build with the `KSPACE` package enabled because the input deck uses `pair_style coul/long` with `kspace_style ewald`.
+
+Set one of:
+
+- `LAMMPS_COMMAND="mpirun -np 4 /path/to/lmp"`
+- `LAMMPS_MPIEXEC`, `LAMMPS_NP`, and `LAMMPS_EXECUTABLE`
