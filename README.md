@@ -1,5 +1,5 @@
 [![CI](https://github.com/abdoudiaw/Efficient-Sampling/actions/workflows/ci.yml/badge.svg)](https://github.com/abdoudiaw/Efficient-Sampling/actions/workflows/ci.yml)
-[![License: BSD-3-Clause](https://img.shields.io/github/license/abdoudiaw/Efficient-Sampling)](https://github.com/abdoudiaw/Efficient-Sampling/blob/main/LICENSE)
+[![License: BSD-3-Clause](https://img.shields.io/github/license/abdoudiaw/Efficient-Sampling)](https://github.com/abdoudiaw/Efficient-Sampling/blob/master/LICENSE)
 [![Paper DOI](https://img.shields.io/badge/DOI-10.1038%2Fs42256--024--00839--1-blue)](https://doi.org/10.1038/s42256-024-00839-1)
 [![Zenodo DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10908462.svg)](https://doi.org/10.5281/zenodo.10908462)
 
